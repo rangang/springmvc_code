@@ -31,4 +31,13 @@ public class SpringTest {
         }
     }
 
+    @Test
+    public void save() {
+        Account account = new Account();
+        account.setName("测试");
+        account.setMoney(111d);
+
+        accountService.save(account);
+    }
+
 }

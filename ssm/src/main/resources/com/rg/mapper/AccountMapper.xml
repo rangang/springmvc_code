@@ -6,4 +6,26 @@
     <select id="findAll" resultType="Account">
         select * from account
     </select>
+
+    <insert id="save" parameterType="Account">
+        insert into account(`name`,money) values(#{name},#{money})
+    </insert>
+
+    <select id="findById" parameterType="int" resultType="account">
+        select * from account where id = #{id}
+    </select>
+
+    <update id="update" parameterType="account">
+        update account set name = #{name},money = #{money} where id = #{id}
+    </update>
+
+    <delete id="deleteBatch" parameterType="int">
+        delete from account
+        <where>
+            <foreach collection="array" open="id in(" close=")" separator="," item="id">
+                #{id}
+            </foreach>
+        </where>
+    </delete>
+
 </mapper>
